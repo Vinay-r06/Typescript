@@ -1,0 +1,475 @@
+typescript in node and express
+
+
+
+// vt-12.. node and typescript setup..
+
+
+run:
+
+tsc --init
+npm init
+npm install --save express                 //  basic node and expess rest api with ts instead js..
+npm install --save body-parser
+
+
+
+// vt-13...getting started with node and typescript..
+
+'require' availbale in node..but not in typescript..
+
+run:
+npm install --save-dev @types/node               // gives types script translation javascript feautres
+
+app.listen({port:3000});
+ run --> tsc
+
+run:
+ npm install --save-dev @types/express                   // when translate...we want like .listen when coding...lot of 3rd party library will get types packages..
+
+ .listen will not enough after adding express..
+
+so add tsconfig.json
+"moduleResolution":"node",
+
+
+change syntax of import  instead of require..
+
+"import express from 'express';"
+
+this will accept by ts..
+
+run:
+tsc
+
+
+now type  .listen u will get auto complition...
+
+
+
+
+vt..14..writing typescript express.js code..
+
+make rest api with node and express with type script..
+
+makes "routes" floder
+sub file-->todos.ts
+
+
+
+vt--15..adding REST Routes with typescript
+
+
+create models..
+after coding 
+run:
+"npm install --save-dev @types/body-parser"
+
+
+
+vt--16...finishing the REST Routes...
+
+two more router resgister..
+
+put, delete..
+
+
+
+vt--17...testing the api
+
+before testing api...we compile..
+
+compile all the file in the project...
+run:
+"tsc"
+
+
+
+
+in model folder...todo.js not having any code..this does not had in javascript..only for compilation..
+
+
+run:
+
+node app.js               // this will spin up our node web server...
+                          node is only capabale of running js code..not ts code...soo app.js
+                          during development we use typescript..but node still excutes js..
+                             // we can test our REST API by using postman..
+
+
+open postman:
+
+new file..new request
+"get:" localhost:3000
+
+run in postman..
+
+"post:" localhost:3000/todo              // select-> body , raw, json ,.... write: text(because we extraact as text)
+
+
+write this below and run:
+
+{
+    "text":"My first Todo!"
+}
+
+
+run:
+output:
+
+{
+    "message": "Added Todo",
+    "todo": {
+        "id": "2023-05-16T10:23:32.396Z",
+        "text": "My first Todo!"
+    },
+    "todos": [
+        {
+            "id": "2023-05-16T10:23:32.396Z",
+            "text": "My first Todo!"
+        }
+    ]
+}
+
+
+
+check by array --. get request
+get:localhost:3000                  // all the data is present
+
+
+
+put request:
+
+put: localhost:3000/todo/"copy id from the output"
+
+body-> raw-> json
+
+
+
+write new text to edit...
+
+{
+    "text":"updated todo!"
+}
+
+run now:send
+output is edited..
+
+check by get: localhost:3000
+
+
+
+
+delete:
+
+delete: copy the url of updated and delete(localhost:3000/todo/2023-05-16T10:22:26.934Z)
+
+u will success response of delete..
+
+
+
+
+check all by get: localhost:3000
+
+
+this all built by typescript and node..
+
+
+
+
+vt---18... using type casting...
+
+
+
+req.bo    -> will body auto completion
+
+body.te -> it will not give auto completion..because it will not n=known wat is incoming data..
+
+
+req.params        --> didnt understand in typescript..wat should in params object...
+
+
+
+suppose if write...
+req.body.texts  -> it will not show error...
+
+so we want assign which datatype..
+
+for body and params ... alias
+
+
+
+
+vt--19....moving to a better project structure...
+
+moving all js file to one floder...
+
+tsconfig.json--> "outDir": "./dist"     //enable--this allows to set directory where generated js files will stored in..all compiled file will be in dist..
+
+run: "tsc"
+
+delete other outside js file...
+
+run: tsc
+
+now dist had node excuteable app
+
+srource code is outside of that..
+
+create "src" folder
+
+move models, router, app.js, to --> src
+
+
+"rootDir":"./src"     -->root directory for input files..src that contains typescript code..
+
+run: tsc
+
+first  it runs src file and generate the dist file for js..
+we work in src and compile and excute in dist folder...
+
+
+
+vt--20...wrap up...
+
+
+node itself not excuteable typescript code...
+we invoke tsc and compile will use tsconfig.json
+this  tsconfig.json--> generates dist floder..
+
+to run node server:
+pacakage.json-->"start": "node dist/app.js"
+
+run: npm start
+
+learnt:
+
+abt validation
+authentication
+databases
+error handling
+
+ts will give extra feautres and some syntax..
+feautres like:
+type assignment
+type conversion
+which adds extra ts safety..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+System Design:
+
+vt--1...System Design Basics: Horizontal vs. Vertical Scaling...
+
+
+
+  
+Horizontal Scaling.                                                           
+
+5 pc                                                                         
+
+1. load balancing required..                                                 
+
+2. Resilient.(if one fails it will redirect request another pc)                
+
+3. Network calls (RPC->remote procedure calls) this slow.. (the communication btw the server will be over the network.network calls are slow..its I/O)..
+
+4. data inconsistency..(ex: transcation happens it will sends to 2->3->4)when transcation operation happens it will loss constitency..we loss guratee
+
+5. scalabity or scales well as users increases..
+
+
+
+Vertical Scaling.
+
+
+1 large box
+
+1. N/A Not required..
+
+2. single point of failure.
+
+3. inter process communication (its fast).
+
+4. here 1 system all the data resides..data constitency.
+
+5. hardware limit.
+
+
+
+good things
+
+Horizontal Scaling: 2,5
+
+
+
+Vertical Scaling: 3, 4
+
+
+first use Vertical scaling..when ppl trusting then choose Horizontal scaling..
+
+
+
+we design system which is meet the requirement.the requirement are such thats going in computer ways...
+
+
+
+
+
+vt--2...Why do Databases fail? AntiPatterns to avoid!
+
+
+"using databases as message queues"
+
+database to send message from 1 server to another server-> called anti- pattern..
+
+whenever server send msg to any server.
+ it will go to database.
+ then puts some entry..-->insert command..
+
+ database cannot talk to servers..it can only receive..
+
+ the other servers have to poll the database as specific interval..ask to database: "is there any new messages to me?"..
+ s1 -> poll-> database 
+ if there is .. then i will read it..after it will do something with that msg..
+
+when u polling database u r doing lot of "read operation"..
+polling very frequently--> putting lot of load on the database..
+
+frequently polling--> load on DB.
+long intervals --> inefficient           // bad user experience..s3 sends to s2..but s2 has long interval soo it will receive late..
+
+database can optimzed can either read or for writing..not both..
+when both happens same time..database can face issues like locking , dead locks..
+
+
+all the server will talk to db..it has no spaces...want delete some entry or update..
+but update had expensive operation..
+delete-->  some script..   // to clean some db
+
+scalabity:
+ server increase to db--> this db unavailable to handle the load..it cant handle some operations..
+ we can add new db..and connecting some server..
+ the connection s2 db and other db server can communication is building complex system and some broker in btw.. --> u dont want build complex..system design is introduce for this.
+
+
+the anti-pattern here database as message queues instead we should use specialized message queues when we had "large system"..
+
+message queues--> will not consider the polling, because the msg queues will push the msg to the another server..
+instaed of server asking. the msg queues will give the msg..it will not be inefficient in that way...
+there are not too many read operation..writing is easy..reading is msg queues responsible..
+scalabity: will take care..if u need more msg queues..u can add them
+
+message queues drawbacks:
+
+when u r system is not very large, if u had these many server..then db can handle at the load..
+depend on u r system, lot of msg on sent  btw system..writing is expensive few..
+while reading is lot expensive..but can optimzed db for read operation..
+
+
+whenever u introduce new concept to system..its needs  training, and time..
+
+in interview..dont start with db...ask wat kind of scale is this..is this system suppose to  handle 
+scale the system..
+handle lot of users
+
+if u r using db then anti pattern..
+
+large system means database.. anti pattern..
+
+
+
+
+vt--3..What is a microservice architecture and it's advantages?..
+
+
+monolith:
+
+monolith architecture: have huge system..
+1 machine  which is running the entire system..
+all clients connected to single machines and this connexted to single database..
+or their is multiple machine(maonothlic) and this connectes different dedicated database..can Horizontal scale.. 
+
+
+micro services:
+is single business unit..all data all function which are revalent to services are put into 1 services..
+want sepaerte..u can do by single services into peices..
+micro services are these tiny..
+all the clients connected to tiny microservices...and all tiny microservices connectes thier dedicated database..
+
+client may not talking to microseervises..but talking to gateway..client--> gateway-->microservice..
+
+
+
+advantages and disadvantages...
+
+monolith architecture..      diagram:  number of client -> number of monolith services-->single database..
+
+
+advantage:
+
+1.when put lot of load, the monolith architecture scales out..just like multiple servers(services),, 
+2. suitable for small team....u dont know to afford the time and the interactions required to break to  this  into a micro service..
+3.less complex: they are less of moving parts aroud architecture...
+                deployment is easy..because everything is same..
+4. less duplicate: u had code..setting up tests, connections, and various other things...all the code not need duplicate for every services for u create..its all in 1 service..
+
+5.this is faster.. because not making any calls over the network..not RPC call...its in the same box..all logic and code in same box..so runs faster..just make local  call..
+
+
+disadvantage:
+
+1.more context is required..new member added go through all the logic and understand..
+2. depolyment are complicated..any code changes..whic file u touching..require a new depolyment u r code is going depoly very frequently..
+3. too much responsibality on each server..any mistake if 1 server crashes .. entire system failure...single one point failure..u had restart the failure service..
+
+
+
+
+microservice:                          daigram:  number of client -> gateway-->microservices(profiles, analytics,chat)--> number of database.. 
+
+advantage:
+
+1.its easier to scale..   because each services connected to particular only data and intreact with each other..easy to design the system...
+
+2.easier for new team memeber...assign a task..each service just need to know the context of this service instead of the entire monolith..
+3.parallel development is easy...because the lesser dependence from 1 service to another services..they develop at same time..
+  in monolith one function is talking to another function..not just code,,also in developer time..
+4. the lesser parts hidden-->each services there is lot of load on each server..u can easily scale that out..and put more machine to each server..
+   in monolith its difficult wat is being used more and less using..u putting more servers directly..
+
+disadvantage:
+
+they are not easy to design...may be a  1 services broken far more parts which is not required..if 1 service talking to particalr same service everytime..then join both service to single services and converted RPC to normal call or function call....it needs smart artictect to artictect well..for microservice architecture
+
+
+
+
+for large system  a micro system architecture is more often but not better..
+successful system uses the monolith architecture called stack overflow..
