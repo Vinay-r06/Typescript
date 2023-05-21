@@ -1,0 +1,303 @@
+vt--2...typescript what and why..
+
+
+what is typescript ? and why?
+
+typescript is a superst to javascript...
+typescript adds bunch of features to javascript
+
+                               but typescript is not run on browser instaed typescript has to be compile to javascript..so this is runs again...
+                                adds certain feautures to the code..only in during development..
+                                to write better code,,and avoids unwanted errors..
+
+                                example pgm run in console web..
+
+                                function add(num1, num2){
+                                    return num1 + num2;
+                                }
+
+                                hit enter
+
+                                run --> add (1,5)
+                                6 --> output
+
+
+when extract user input javascript will be as "text"...even user provided number it will as extract "string"
+
+
+avoid unwanted behaviour at runtime..---> u can check by js but u should extra code by "if" check..
+typescript adds strict typing <---"unnecessary" step that could be avoided with strict types...
+
+
+                                 typescript adds...
+
+ types..                                                                       next-gen jacascript feautures(compiled down for older browsers)
+
+non- javascript feautures like interfaces or generics                          meta - programming feautures like decorators..
+
+rich configuration options                                                     modern tooling that helps even in non- typescript projects..
+
+
+
+
+vt-3..typescript setup and install..
+
+
+
+vt-4..assigning types..
+
+core types:
+
+number ----  1, 5.3, -10   ----- all numbers, no difference between integers or floats..
+string ----  'Hi'. "Hi". `Hi`    ------  all text values
+boolean  ---  true, false   -----  just these two, no "truty" or "falsy" values..
+object  ---- {age:30}      -----  any javascript object, more specific types(type of object) are possible.. 
+array  ----[1,2,3]      -----   any javascript array, type can be flexible or strict (regarding the element types..)
+
+
+
+
+// vt -5..type  inference and type casting... 
+
+// typescript is builds up by javascript...
+
+any js file wil works in ts file..
+all js code is supported by in ts..
+
+
+
+
+
+// vt-6...configuring typescript
+
+
+run "tsc --init"
+
+!-> perdically ingonre the value is null...we forcing to ignore as null of button ...ts will not check html file..
+tsc --> will consider only "tsc config file"
+
+when target sepecific file will take only that file.."tsc app.js"
+
+
+
+
+// vt-7...working with union types..
+
+let work both when without telling datatype: "number" "any"
+
+union--. mean number or string...number | string
+
+
+// vt--8....using object and array DataTypes... 
+
+buttonelement--> is object here...dom object here in javascript..
+
+
+
+// vt--9..working with type aliases and interfaces...
+
+
+typeof --> available in javascript..
+type--> available in typescript..
+
+repetation code can be used by type...mainly used in union type...using type aliases..
+
+aliases: save the repeatation the code..
+interface : define the structure of the object...
+
+difference btw alises and interface..
+
+if u want define structure of the object..u can use --> alises or interfaces
+
+
+interface used..--> to force classes and implement certain methods or functionalities..
+
+
+
+
+// vt--10...understanding generics..
+
+generics type: simply type acts with other type..array is example..
+array is list of data..thats the core type..
+but it act another type..
+
+tsc--> run and compile..all typescript file...
+
+promise is not part of ts..
+
+u cant set <> every object..its needs to be object ,,which supports this..
+the promise object...promise constructor function does supports generics type..
+
+
+
+above 10 vt below this task...
+
+
+
+
+Lets get started with typescript
+
+Task details
+
+Watch video 1 and 2 from the following link and answer the following
+
+1.What advantage does typescript gives us?Explain with example?
+2.What does typescript add to javascript?Explain each of them in your own words. Research on google if you are confused.
+
+
+Watch video 3 and 4 from above link and answer the following [Code along with the trainer.]
+
+1.Why do we need typescript compiler?
+2.What happens when you compile?
+3.Code along with the trainer.
+4.What are the different types available in typescript?
+5.Why does add('1', '2') start showing error when the trainer has defined types?
+
+
+Watch video 5 , 6 and 7 from above link and answer the following [Code along with the trainer.]
+
+1.What do you mean typescript can infer the types? What is the advantage of this?
+2.What is the problem with type inferenece sometime and how do you solve with type casting?
+3.What does tsc init do?
+4.What does strict mode do?
+5.What does buttonElement ! exactly do ? Why do we put EXCLAMATION MARK( ! ).
+6.Why shouldnt we use any type?
+
+
+Watch video 8 , 9 and 10 from above link answer the following [Code along with the trainer.]. Skip 11.
+
+1.How we handle objects?
+2.How do we handle arrays?
+3.Code along with the trainer.
+4.What does type keyword do?
+5.Interface are more frequently used than types. What do you think is the advantage of interfaces?
+6.How is an array a generic as per the trainer?
+7.Why do we need to change the target to es6?
+8.How does generics work with promises.
+
+
+Push the code to git and upload the commit iD
+
+
+
+
+
+// Integrating Typescript with Node and Express
+
+
+
+Task details
+
+Watch video 12  from the following link and answer the following [Code along with the trainer.]
+
+1.Why do we need to install types/node? What does it do?
+2.Why do we need to install types/express? What does it do?
+3.What is the need for changing moduleresolution to es6?
+4.Import keyword is very similar to require keyword. What do you think?
+5.How to use import keyword?
+
+
+Watch video 13 , 14 and 15
+
+1.How does import { Router } from 'express'. work. What does { } this do?
+2.What do you mean by interface?Why do we have to create it for todos type?
+3.What are named exports and default exports?
+4.Can you call both the api via POSTMAN and test it. [Super simple]
+5.There is one thing which the trainer has forgotten to do because of which the api is failing.Can you fix that by yourself(Hint - He forgot to return the response)
+
+
+Deliverable (Dont watch video 16, Do it yourself. It is super simple)
+
+1.Can you add a delete api [POST request] , which takes an id in the body and deletes that item from the todolist.
+2.[To run the app first do tsc. It will create app.js from app.ts. Then do node app.js]
+3.Test it with postman. See if the todolist item gets deleted.
+4.If the id is not found send a response status = 404 . Item not found.
+5.Can you add an Edit API [POST request] , which takes a id and newText in the body and edits that item from the todolist with the newText.
+6.Test it with postman. See if the todolist item gets updated with the newText.
+7.If the id is not found send a response status = 404 . Item not found.
+8.If stuck for more than 1 hour watch video 16. But try doing by yourself. It will help you understand, better.
+
+
+
+
+Push the code to git and upload the commit iD
+
+
+
+
+
+
+Typescript showdown
+
+
+
+Task details
+
+Watch video 17 and 18 from the following link and answer the following [Code along with the trainer.]
+
+What is type casting
+What is the need of RequestBody and RequestParams?
+
+
+Watch video 19 and 20 and answer the following [Code along with the trainer.]
+
+What is the problem we are trying to solve here?
+How do we solve this problem?What does outdir: '/dist' do exactly?
+Why do we have to change the rootDir to './src'?
+Why do we add node dist/app.js in package.json ? What does it exactly do?
+
+
+Deliverable - [Skip this for now as companies dont ask for it for now]
+
+Convert the expense tracker project into typescript.
+Add all the required packages
+Convert all the files to ts from js.
+Make interfaces for objects.
+Make sure the project folders are correct.
+
+
+Understand that node js is always used with typescript to ensure less errors.
+
+That is the industry standard.
+
+Writing backend application without type checking is dangerous.
+
+
+
+Push the code to git and upload the commit ID..
+
+
+
+
+System Design
+
+
+
+Task details
+
+Watch this video and answer the following
+
+What is vertical Scaling and Horizontal Scaling.
+Which one would you prefer and why?
+
+
+Watch this video and answer the following
+
+What are the antipatterns you should avoid with Database?Why is it so?
+What is the solution to the antipattern?
+
+
+Watch this video and answer the following
+
+What is Microservice architecture
+What is Monolitth Architecture?
+What is the difference between Microservice and Monolith architecture -
+
+
+
+
+
+
+//vt--12...node and typescript setup...
+
+
